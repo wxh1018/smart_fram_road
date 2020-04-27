@@ -71,6 +71,7 @@ export default {
         center: [118.820041, 32.014397], //中心点坐标
         mapStyle: "amap://styles/85661922229fb1dbe5a2521042fde03c"
       });
+      console.log(map)
     },
     drive() {
       //构造路线导航类

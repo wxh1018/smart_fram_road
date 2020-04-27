@@ -8,11 +8,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import send from './until/send'
 import base from './until/base'
 import login_js from './until/login'
-import echarts from 'echarts'
+import Echarts from 'echarts'
 import store from './store'
 import axios from 'axios'
-Vue.prototype.$echarts = echarts
+import '../static/iconfont/iconfont.css'
 import VDistpicker from 'v-distpicker'
+
+Vue.prototype.echarts=Echarts
+Vue.use(Echarts)
 
 Vue.component('v-distpicker', VDistpicker);
 

@@ -1,19 +1,17 @@
 <template>
   <div class="wrap">
-    <div class="maxbox box1">
-      <h1>公众出行</h1>
-      <ul class="ul1">
-        <li v-for="(item,id) in list1" :key="id" @click="to(item.router)">
-          <p>{{item.name}}</p>
-        </li>
-      </ul>
-    </div>
+    <div class="title">智慧农路云平台</div>
     <div class="maxbox">
-      <h1>行业管理</h1>
-      <ul class="ul2">
-        <li v-for="(item, index) in list2" :key="index" @click="to(item.router)">
-          <p>{{item.name}}</p>
-        </li>
+      <ul class="one-ul">
+        <li class="img1" @click="toDaoHang">精准导航</li>
+        <li style="margin-left:5%;" class="img2" @click="toLvYou">公路旅游</li>
+        <li style="margin-left:5%;" class="img3" @click="toGongJiao">实时公交</li>
+      </ul>
+      <ul class="two-ul">
+        <li class="img4" @click="toJianShe">建设</li>
+        <li style="margin-left: 2.66%;" class="img5" @click="toGuanYang">管养</li>
+        <li style="margin-left: 2.66%;" class="img6" @click="toYunYing">运营</li>
+        <li style="margin-left: 2.66%;" class="img7" @click="toTongJi">统计</li>
       </ul>
     </div>
   </div>
@@ -21,46 +19,13 @@
 <script>
 export default {
   data() {
-    return {
-      list1: [
-        {
-          name: "精准导航",
-          router: "/home"
-        },
-        {
-          name: "公路旅游",
-          router: ""
-        },
-        {
-          name: "实时公交",
-          router: ""
-        }
-      ],
-      list2: [
-        {
-          name: "运营",
-          router: ""
-        },
-        {
-          name: "建设",
-          router: ""
-        },
-        {
-          name: "管养",
-          router: ""
-        },
-        {
-          name: "统计",
-          router: ""
-        }
-      ]
-    };
+    return {};
   },
   components: {},
   computed: {},
   watch: {},
   created() {
-    console.log(1);
+    
   },
   mounted() {},
   methods: {
@@ -70,6 +35,34 @@ export default {
         return;
       }
       this.$router.push(v);
+    },
+    //精准导航
+    toDaoHang() {
+      this.$router.push({path:'/daohang'+'',name:"daohang"});
+    },
+    //公路旅游
+    toLvYou() {
+      //this.rounded.push('/realTimeBus')
+      this.$message.error("暂未开放");
+    },
+    toGongJiao() {
+      this.$message.error("暂未开放");
+    },
+    //建设
+    toJianShe() {
+      this.$router.push({path:"/highway"});
+    },
+    //管养
+    toGuanYang() {
+      this.$router.push('/searchSurvey')
+    },
+    //运营
+    toYunYing() {
+      this.$router.push('/oeration-Bus')
+    },
+    //统计
+    toTongJi() {
+      this.$router.push("/highwayStatistics");
     }
   }
 };
@@ -78,68 +71,171 @@ export default {
 .wrap {
   width: 100%;
   height: 100%;
-  background: #2f4e65;
+  background: #102971;
+}
+.title {
+  width: 100%;
+  height: 12%;
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 40px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 15px;
 }
 .maxbox {
-  flex: 1;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  position: relative;
-}
-.box1::before {
-  content: "";
-  width: 1px;
-  height: 80%;
-  position: absolute;
-  right: 0;
-  top: 10%;
-  border-right: 1px dashed skyblue;
-}
-.maxbox h1 {
-  color: white;
-  font-size: 36px;
-  font-weight: 900;
-  width: 50%;
-  height: 50px;
-  border: 1px solid skyblue;
-  text-align: center;
-  margin-top: 12%;
-}
-.maxbox p {
-  color: white;
-}
-.maxbox ul {
-  width: 50%;
-  height: 50%;
-  margin-top: 50px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  align-items: center;
+  width: 70%;
+  height: 60%;
+  margin-left: 15%;
+  margin-top: 3%;
 }
 .maxbox ul li {
-  width: 100%;
-  border: 1px solid skyblue;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 5px;
   cursor: pointer;
 }
-.maxbox ul p {
-  font-size: 30px;
+.one-ul {
+  width: 100%;
+  height: 50%;
+}
+.one-ul li {
+  float: left;
+  width: 30%;
+  height: 95%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
 }
-.ul1 li {
-  height: 30%;
+.two-ul {
+  width: 100%;
+  height: 50%;
+  margin-top: 2%;
 }
-.ul2 {
-  /* border: 1px solid red; */
+.two-ul li {
+  float: left;
+  width: 23%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 25px;
+  font-size: 32px;
+  font-weight: bold;
 }
-.ul2 li {
-  height: 22%;
+.img1 {
+  background-image: url("../../static/icon/jzdh1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #0984e3;
+  color: #fff;
+}
+.img1:hover {
+  background-image: url("../../static/icon/jzdh2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img2 {
+  background-image: url("../../static/icon/ly1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #5f27cd;
+  color: #fff;
+}
+.img2:hover {
+  background-image: url("../../static/icon/ly2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img3 {
+  background-image: url("../../static/icon/bus1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #1e3799;
+  color: #fff;
+}
+.img3:hover {
+  background-image: url("../../static/icon/bus2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 40% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img4 {
+  background-image: url("../../static/icon/jianshe1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #ee5253;
+  color: #fff;
+}
+.img4:hover {
+  background-image: url("../../static/icon/jianshe2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img5 {
+  background-image: url("../../static/icon/guanli1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #ffa502;
+  color: #fff;
+}
+.img5:hover {
+  background-image: url("../../static/icon/guanli2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img6 {
+  background-image: url("../../static/icon/yunying1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #b33771;
+  color: #fff;
+}
+.img6:hover {
+  background-image: url("../../static/icon/yunying2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #fff;
+  color: #1298cc;
+}
+.img7 {
+  background-image: url("../../static/icon/tongji1.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #12cbc4;
+  color: #fff;
+}
+.img7:hover {
+  background-image: url("../../static/icon/tongji2.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-size: 45% auto;
+  background-color: #fff;
+  color: #1298cc;
 }
 </style>

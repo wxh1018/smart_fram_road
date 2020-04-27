@@ -1,79 +1,126 @@
 <template>
-  <div class="wrap">
-    <header>
-      <div class="logo"></div>
-      <div class="title">{{this.$store.state.title}}</div>
-      <div class="exit">
-        <img @click="exit" src="../assets/img/logo.png" alt="">
-      </div>
-    </header>
-    <main>
-      <div class="left">
-        <el-col :span="24">
-          <el-menu
-            default-active="1-1"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
-          >
-            <el-submenu index="1">
-              <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>公共出行</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1" @click="jump('/daohang')">精准导航</el-menu-item>
-                <el-menu-item index="1-2" @click="jump('')">公路旅游</el-menu-item>
-                <el-menu-item index="1-3" @click="jump('')">实时公交</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-            <el-submenu index="2">
-              <template slot="title">
-                <i class="el-icon-menu"></i>
-                <span slot="title">行业管理</span>
-              </template>
-              <el-menu-item-group>
-                <el-menu-item index="2-1" @click="jump('/management/statistic')">统计</el-menu-item>
-                <el-menu-item index="2-2" @click="jump('/management/building')">建设</el-menu-item>
-                <el-menu-item index="2-3" @click="jump('')">管养</el-menu-item>
-                <el-menu-item index="2-4" @click="jump('')">运营</el-menu-item>
-              </el-menu-item-group>
-            </el-submenu>
-          </el-menu>
+  <el-container class="home-container">
+    <el-header>
+      <el-row class="header-content">
+        <el-col :span="4"></el-col>
+        <el-col class="title-center" :span="16">{{this.$store.state.title}}</el-col>
+        <el-col class="title-right" :span="4">
+          <img style="height: 80%;" @click="exit" src="../assets/img/logo.png" alt />
         </el-col>
-      </div>
-      <div class="right">
-        <div class="content">
+      </el-row>
+    </el-header>
+    <el-container>
+      <!-- 左 -->
+      <el-aside width="200px">
+        <el-menu
+          :unique-opened="true"
+          class="el-menu-vertical-demo"
+          @open="handleOpen"
+          @close="handleClose"
+          background-color="rgb(4, 16, 39)"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+          :router="true"
+          :default-active="$route.path"
+        >
+          <el-menu-item :index="'/daohang'">
+            <i class="iconfont icon-daohang"></i>
+            <span slot="title">精准导航</span>
+          </el-menu-item>
+          <!-- '/roudTravel' -->
+          <el-menu-item :index="5">
+            <i class="iconfont icon-lvyou"></i>
+            <span slot="title">公路旅游</span>
+          </el-menu-item>
+          <!-- '/realTimeBus' -->
+          <el-menu-item :index="6">
+            <i class="iconfont icon-yiliaohangyedeICON-"></i>
+            <span slot="title">实时公交</span>
+          </el-menu-item>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="iconfont icon-jianshe"></i>
+              <span>建设</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item :index="'/highway'">
+                <span>公路</span>
+              </el-menu-item>
+              <el-menu-item :index="'/bridge'">
+                <span>桥梁</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="iconfont icon-icon-"></i>
+              <span>管养</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item :index="'/searchSurvey'">
+                <span>查询巡查信息</span>
+              </el-menu-item>
+              <el-menu-item :index="'/sruvey'">
+                <span>增加巡查信息</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="iconfont icon-yunying"></i>
+              <span>运营</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item :index="'/oeration-Bus'">
+                <span>村镇公交</span>
+              </el-menu-item>
+              <el-menu-item :index="'/oeration-logistics'">
+                <span>物流网点</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="iconfont icon-tongji"></i>
+              <span>统计</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item :index="'/highwayStatistics'">
+                <span>公路</span>
+              </el-menu-item>
+              <el-menu-item :index="'/bridgeStatistics'">
+                <span>桥梁</span>
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-container class="home-body">
+        <!-- 右-中 -->
+        <el-main>
           <router-view></router-view>
-        </div>
-        <Footer :arr="bottom" />
-      </div>
-    </main>
-  </div>
+        </el-main>
+        <!-- 右-下 -->
+        <el-footer>
+          <el-row>
+            <el-col :span="24">江苏纬信工程咨询有限公司</el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="24">江苏智城慧宁提供技术支持</el-col>
+          </el-row>
+        </el-footer>
+      </el-container>
+    </el-container>
+  </el-container>
 </template>
 <script>
-import Footer from "./base/Footer";
 var map = null;
 export default {
-  data() {
-    return {
-      img:require('../assets/img/logo.png')
-    };
+  created() {
+    this.base.AddStyle(`.el-submenu__title:hover{
+  background-color: aqua!important;
+}`);
   },
-  components: {
-    Footer
-  },
-  computed: {
-    bottom() {
-      return this.$store.state.base_bottom;
-    }
-  },
-  watch: {},
-  created() {},
-  mounted() {},
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -81,79 +128,70 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    jump(v){
-      this.$router.push(v)
+    jump(v) {
+      this.$router.push(v);
     },
-    exit(){
-      this.$router.push('/login')
-      this.login_js.ClearToken()
+    exit() {
+      this.$router.push("/login");
+      this.login_js.ClearToken();
     }
   }
 };
 </script>
 <style scoped>
-.wrap {
+.home-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-flow: column;
 }
-header {
+.el-header {
   width: 100%;
-  height: 60px;
-  border-bottom: 1px solid #cccccc;
-  display: flex;
-}
-.logo {
-  width: 220px;
   height: 100%;
-  flex: 1 0 auto;
-  background: #dddddd;
+  background-color: rgb(4, 16, 39);
+  margin: 0px;
+  padding: 0px;
 }
-.exit{
+.el-aside {
+  width: 100%;
   height: 100%;
-  background: #545c64;
+}
+.home-body {
+  width: 100%;
+  height: 100%;
+}
+.el-main {
+  height: 300px;
+}
+.el-footer {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(187, 184, 184, 0.7);
+  text-align: center;
+  padding-top: 15px;
+  letter-spacing: 3px;
+}
+.header-content {
+  width: 100%;
+  height: 100%;
+}
+.header-content > .el-col {
+  height: 100%;
+}
+.title-right {
   display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
   align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100%;
 }
-.exit img{
-  height: 70%;
-  cursor: pointer;
-}
-.title {
-  width: 100%;
-  height: 100%;
+.title-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  font-size: 30px;
+  letter-spacing: 10px;
+  color: #fff;
   font-weight: bold;
-  font-size: 32px;
-  background: #545c64;
 }
-main {
-  flex: 1;
-  display: flex;
-}
-.left {
-  width: 220px;
-  flex: 1 0 auto;
+.el-menu {
   height: 100%;
-  box-sizing: border-box;
-  background: #545c64;
-}
-.right {
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  height: 100%;
-}
-.content {
-  height: 95%;
-  width: 100%;
-  background: rgba(245, 247, 250);
 }
 </style>

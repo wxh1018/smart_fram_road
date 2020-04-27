@@ -75,7 +75,7 @@ export default {
     login() {
       this.$message.success("登录成功！");
       Lj.Savetoken("123");
-      this.$router.push("/");
+      this.$router.push("/index");
     },
     enter(){
       document.onkeyup = ((v)=>{
