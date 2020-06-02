@@ -23,17 +23,18 @@
           :router="true"
           :default-active="$route.path"
         >
-          <el-menu-item :index="'/daohang'">
+        <!-- /daohang -->
+          <el-menu-item :index="'8'">
             <i class="iconfont icon-daohang"></i>
             <span slot="title">精准导航</span>
           </el-menu-item>
           <!-- '/roudTravel' -->
-          <el-menu-item :index="5">
+          <el-menu-item :index="'5'">
             <i class="iconfont icon-lvyou"></i>
             <span slot="title">公路旅游</span>
           </el-menu-item>
           <!-- '/realTimeBus' -->
-          <el-menu-item :index="6">
+          <el-menu-item :index="'6'">
             <i class="iconfont icon-yiliaohangyedeICON-"></i>
             <span slot="title">实时公交</span>
           </el-menu-item>

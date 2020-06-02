@@ -11,7 +11,12 @@
     <el-card>
       <!-- 添加项目按钮 -->
       <el-row>
-        <el-button type="primary" size="mini" @click="addProject">添加项目</el-button>
+        <el-col :span="4">
+          <el-button type="primary" size="mini" @click="addProject">添加项目</el-button>
+        </el-col>
+        <el-col :span="4">
+          <el-button type="primary" size="mini" @click="addExcelByHighway">Excel上传</el-button>
+        </el-col>
       </el-row>
       <!-- 项目表格 -->
       <el-table :data="tableData" :stripe="true" border style="width: 100%">
@@ -177,6 +182,10 @@ export default {
     addProject() {
       this.addProjectVisible = true;
       this.$router.push("/building/highway/addProject");
+    },
+    //上传Excel事件
+    addExcelByHighway(){
+      this.$router.push('/building/highway/addExcelByHighway')
     },
     //查询项目事件
     searchProject(row) {

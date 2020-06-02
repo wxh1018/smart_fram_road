@@ -37,6 +37,9 @@ const router = new Router({
             {path:'/building/highway/editProject',name:'editProjectByHighway',component:()=>import ('../components/building/highway/editProject.vue')}
           ]
         },
+        {
+          path:'/building/highway/addExcelByHighway',name:'highway',component:()=>import ('../components/building/highway/addExcelByHighway.vue'),
+        },
         //建设--桥梁
         {
           path:'/bridge',name:'bridge',component:()=>import ('../components/building/bridge/Home.vue'),
